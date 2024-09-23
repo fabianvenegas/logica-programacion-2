@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conversor de Temperatura</title>
+    <style>
+        /* Estilo para centrar el cuadro */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff; /* Color de fondo celeste claro */
+        }
+
+        .container {
+            background-color: #e0f7fa; /* Color de cuadro celeste */
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .container h1 {
+            margin-bottom: 20px;
+            color: #007bff;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 3px;
+            border: 1px solid #007bff;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        #resultadoFahrenheit, #resultadoKelvin, #error {
+            margin-top: 10px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Conversor de Temperatura</h1>
+        <div class="form-group">
+            <input type="text" id="tempCelsius" placeholder="Ingresa la temperatura en Celsius">
+        </div>
+        <button onclick="convertirTemperatura()">Convertir</button>
+
+        <p id="resultadoFahrenheit"></p>
+        <p id="resultadoKelvin"></p>
+        <p id="error"></p>
+    </div>
+
+    <script>
+        function convertirTemperatura() {
+            let input = document.getElementById('tempCelsius').value;
+            let celsius = parseFloat(input);
+
+            // Verificar si el valor es un número
+            if (isNaN(celsius)) {
+                document.getElementById('error').innerText = 'Por favor, ingresa un número válido.';
+                document.getElementById('resultadoFahrenheit').innerText = '';
+                document.getElementById('resultadoKelvin').innerText = '';
+                return;
+            }
+
+            // Conversión a Fahrenheit y Kelvin
+            const fahrenheit = (celsius * 9 / 5) + 32;
+            const kelvin = celsius + 273.15;
+
+            // Mostrar los resultados en el DOM
+            document.getElementById('resultadoFahrenheit').innerText = `Temperatura en Fahrenheit: ${fahrenheit.toFixed(2)}°F`;
+            document.getElementById('resultadoKelvin').innerText = `Temperatura en Kelvin: ${kelvin.toFixed(2)} K`;
+            document.getElementById('error').innerText = '';
+        }
+    </script>
+</body>
+</html>
